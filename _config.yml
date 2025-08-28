@@ -1,0 +1,13 @@
+title: "FLwatch"
+description: "FLwatch App for iOS and watchOS"
+url: "https://poml88.github.io"
+baseurl: "/flwatch-website"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

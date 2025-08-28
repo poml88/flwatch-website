@@ -1,0 +1,23 @@
+---
+layout: none
+permalink: /404.html
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>404 — FLwatch</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+</head>
+<body class="page-404 theme-dark">
+  <div class="container" style="padding-top:60px;">
+    <h1 id="err-title">Page not found</h1>
+    <p id="err-msg">The page you are looking for could not be found.</p>
+    <p><a href="{{ site.baseurl }}/en/">Go to English homepage</a></p>
+    <p><a href="{{ site.baseurl }}/">Auto-detect your language</a></p>
+  </div>
+  <script>window._FLW_TRANSLATIONS = {{ site.data.translations | jsonify }};</script>
+  <script src="{{ site.baseurl }}/assets/js/site.js"></script>
+</body>
+</html>

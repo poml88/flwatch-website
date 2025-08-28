@@ -1,0 +1,5 @@
+# robots.txt for FLwatch website
+User-agent: *
+Allow: /
+Sitemap: https://poml88.github.io/flwatch-website/sitemap.xml
+Host: poml88.github.io

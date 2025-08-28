@@ -1,0 +1,45 @@
+---
+layout: none
+permalink: /
+---
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FLwatch — Redirecting…</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow">
+    <script>
+      // Redirect root to user's preferred language (if available) or to English
+      (function(){
+        var base = "{{ site.baseurl }}".replace(/\/$/,'') || "";
+        var supported = [{% for pair in site.data.translations %}"{{ pair[0] }}"{% unless forloop.last %}, {% endunless %}{% endfor %}];
+        try {
+          var langs = navigator.languages || [navigator.language || navigator.userLanguage || 'en'];
+          var pick = null;
+          for (var i=0;i<langs.length;i++){
+            var L = langs[i].toLowerCase();
+            for (var j=0;j<supported.length;j++){
+              var s = supported[j].toLowerCase();
+              if (L.indexOf(s.toLowerCase()) !== -1 || s.indexOf(L) !== -1 || (s === 'zh-hans' && L.indexOf('zh')===0)) {
+                pick = supported[j];
+                break;
+              }
+            }
+            if(pick) break;
+          }
+          if(!pick) pick = 'en';
+          var target = base + '/' + pick + '/';
+          // Only redirect if we're at the root path
+          var path = window.location.pathname.replace(/\/+$|^\/+/, '');
+          if (path === (base.replace(/^\/+/, '') || '')) {
+            window.location.replace(target);
+          }
+        } catch(e){ console.log(e); }
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to localized site… <a href="{{ site.baseurl }}/en/">English version</a></p>
+  </body>
+</html>

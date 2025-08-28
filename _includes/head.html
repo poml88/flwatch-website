@@ -1,0 +1,44 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% assign lang_code = page.lang | default: site.lang | default: 'en' %}
+  {% assign t = site.data.translations[lang_code] %}
+  <title>{{ t.seo_title | default: site.title }}</title>
+  <meta name="description" content="{{ t.seo_description | default: site.description }}">
+  <meta name="keywords" content="{{ t.keywords | join: ', ' }}">
+  <meta name="apple-itunes-app" content="app-id=6670172928">
+  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/images/app-icon.png">
+  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ t.seo_title | default: site.title }}">
+  <meta property="og:description" content="{{ t.seo_description | default: site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/app-icon.png">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ t.seo_title | default: site.title }}">
+  <meta name="twitter:description" content="{{ t.seo_description | default: site.description }}">
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "{{ t.site_title }}",
+    "url": "{{ site.url }}{{ site.baseurl }}/{{ lang_code }}/",
+    "operatingSystem": ["iOS","watchOS"],
+    "applicationCategory": "MedicalApplication",
+    "offers": { "url": "{{ t.app_store_url }}" }
+  }
+  </script>
+  <!-- Hreflang alternate URLs -->
+  {% for pair in site.data.translations %}
+    {% assign code = pair[0] %}
+    <link rel="alternate" hreflang="{{ code }}" href="{{ site.url }}{{ site.baseurl }}/{{ code }}/" />
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ site.baseurl }}/en/" />
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css">
+  <script>window.SITE_BASEURL = "{{ site.baseurl }}";</script>
+  {% seo %}
+</head>
